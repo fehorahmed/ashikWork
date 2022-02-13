@@ -1,0 +1,66 @@
+@if (old('product') != null && sizeof(old('product')) > 0)
+                                    @foreach(old('product') as $item)
+                                        <tr class="product-item">
+                                            <td>
+                                                <div class="form-group {{ $errors->has('product.'.$loop->index) ? 'has-error' :'' }}">
+                                                    <select class="form-control select2 product" style="width: 100%;" name="product[]" data-placeholder="Select Product" required>
+                                                        <option value="">Select Product</option>
+
+                                                        @if (old('product.'.$loop->index) != '')
+                                                            <option value="{{ old('product.'.$loop->index) }}" selected>{{ old('product-name.'.$loop->index) }}</option>
+                                                        @endif
+                                                    </select>
+
+                                                    <input type="hidden" name="product-name[]" class="product-name" value="{{ old('product-name.'.$loop->index) }}">
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="form-group {{ $errors->has('quantity.'.$loop->index) ? 'has-error' :'' }}">
+                                                    <input type="number" step="any" class="form-control quantity" name="quantity[]" value="{{ old('quantity.'.$loop->index) }}">
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="form-group {{ $errors->has('unit_price.'.$loop->index) ? 'has-error' :'' }}">
+                                                    <input type="text" class="form-control unit_price" name="unit_price[]" value="{{ old('unit_price.'.$loop->index) }}">
+                                                </div>
+                                            </td>
+
+                                            <td class="total-cost">৳ 0.00</td>
+                                            <td class="text-center">
+                                                <a role="button" class="btn btn-danger btn-sm btn-remove">X</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr class="product-item">
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control select2 product" style="width: 100%;" name="product[]" data-placeholder="Select Product" required>
+                                                    <option value="">Select Product</option>
+
+                                                </select>
+
+                                                <input type="hidden" name="product-name[]" class="product-name">
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="number" step="any" class="form-control quantity" name="quantity[]">
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control unit_price" name="unit_price[]">
+                                            </div>
+                                        </td>
+
+                                        <td class="total-cost">৳ 0.00</td>
+                                        <td class="text-center">
+                                            <a role="button" class="btn btn-danger btn-sm btn-remove">X</a>
+                                        </td>
+                                    </tr>
+                                @endif
