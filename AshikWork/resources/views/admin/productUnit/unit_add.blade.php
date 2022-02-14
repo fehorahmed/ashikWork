@@ -24,22 +24,30 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Quick Example</h3>
+                            <a class="btn btn-primary pull-right" href="{{route('product_unit.index')}}">Back</a>
                         </div><!-- /.box-header -->
                         <!-- form start -->
-                        <form action="" method="post" role="form">
+                        <form action="{{route('product_unit.store')}}" method="post" role="form">
                             @csrf
 
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="name">Name *</label>
-                                    <input type="text" name="name" class="form-control" id="name"
+                                    <input type="text" name="name" required value="{{old('name')}}" class="form-control" id="name"
                                         placeholder="Enter name">
                                 </div>
+                                @error('name')
+                                    <p class="alert alert-danger">{{$message}}</p>
+                                @enderror
                                 <div class="radio">
-                                    Status *
-                                    <label><input type="radio" name="status" value="1">Active </label>
-                                    <label><input type="radio" name="status" value="0">Inactive</label>
+
+                                   <b>Status *</b>
+                                    <label><input type="radio" name="status"  value="1"> Active </label>&nbsp;&nbsp;
+                                    <label><input type="radio" name="status"  value="0"> Inactive</label>
                                 </div>
+                                @error('status')
+                                    <p class="alert alert-danger">{{$message}}</p>
+                                @enderror
 
                             </div><!-- /.box-body -->
 
