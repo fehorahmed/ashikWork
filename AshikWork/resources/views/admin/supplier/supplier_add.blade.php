@@ -7,30 +7,30 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Product Unit Add
+                Supplier Add
                 <small>Control panel</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Dashboard</li>
+                <li class="active">Supplier</li>
             </ol>
         </section>
 
         <section class="content">
             <div class="row">
                 <!-- left column -->
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
-                            <a class="btn btn-primary pull-right" href="{{route('product_unit.index')}}">Back</a>
+
+                            <a class="btn btn-primary" href="{{route('supplier.index')}}">Back</a>
                         </div><!-- /.box-header -->
                         @if(Session::has('message'))
                             <p class="alert alert-success">{{session('message')}}</p>
                         @endif
                         <!-- form start -->
-                        <form action="{{route('product_unit.store')}}" method="POST" role="form">
+                        <form action="{{route('supplier.store')}}" method="POST" role="form">
                             @csrf
 
                             <div class="box-body">
@@ -42,6 +42,32 @@
                                 @error('name')
                                     <p class="alert alert-danger">{{$message}}</p>
                                 @enderror
+                                <div class="form-group">
+                                    <label for="c_name">Company Name *</label>
+                                    <input type="text" name="c_name" required value="{{old('c_name')}}" class="form-control" id="c_name"
+                                        placeholder="Enter company name.">
+                                </div>
+                                @error('c_name')
+                                    <p class="alert alert-danger">{{$message}}</p>
+                                @enderror
+                                <div class="form-group">
+                                    <label for="c_name">Phone No. *</label>
+                                    <input type="text" name="phone" required value="{{old('phone')}}" class="form-control" id="phone"
+                                        placeholder="Enter phone no.">
+                                </div>
+                                @error('phone')
+                                    <p class="alert alert-danger">{{$message}}</p>
+                                @enderror
+                                <div class="form-group">
+                                    <label for="c_name">Address *</label>
+                                    <input type="text" name="address" required value="{{old('address')}}" class="form-control" id="address"
+                                        placeholder="Enter address.">
+                                </div>
+                                @error('address')
+                                    <p class="alert alert-danger">{{$message}}</p>
+                                @enderror
+
+
                                 <div class="radio">
 
                                    <b>Status *</b>
@@ -55,7 +81,7 @@
                             </div><!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
                     </div><!-- /.box -->

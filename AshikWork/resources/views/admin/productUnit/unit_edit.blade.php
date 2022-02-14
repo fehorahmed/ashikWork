@@ -7,7 +7,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Product Unit Add
+                Product Unit Edit
                 <small>Control panel</small>
             </h1>
             <ol class="breadcrumb">
@@ -30,13 +30,13 @@
                             <p class="alert alert-success">{{session('message')}}</p>
                         @endif
                         <!-- form start -->
-                        <form action="{{route('product_unit.store')}}" method="POST" role="form">
+                        <form action="{{route('product_unit.update')}}" method="POST" role="form">
                             @csrf
 
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="name">Name *</label>
-                                    <input type="text" name="name" required value="{{old('name')}}" class="form-control" id="name"
+                                    <input type="text" name="name" required value="{{old('name',$data[0]->name)}}" class="form-control" id="name"
                                         placeholder="Enter name">
                                 </div>
                                 @error('name')
@@ -45,8 +45,8 @@
                                 <div class="radio">
 
                                    <b>Status *</b>
-                                    <label><input type="radio" name="status"  value="1"> Active </label>&nbsp;&nbsp;
-                                    <label><input type="radio" name="status"  value="0"> Inactive</label>
+                                    <label><input type="radio" name="status" {{$data[0]->status==1? "checked":""}}  value="1"> Active </label>&nbsp;&nbsp;
+                                    <label><input type="radio" name="status" {{$data[0]->status==0? "checked":""}} value="0"> Inactive</label>
                                 </div>
                                 @error('status')
                                     <p class="alert alert-danger">{{$message}}</p>
@@ -55,7 +55,8 @@
                             </div><!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                               <input type="hidden" name="id" value="{{$data[0]->id}}">
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
                     </div><!-- /.box -->

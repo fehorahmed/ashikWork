@@ -7,30 +7,30 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Product Unit Add
+                Product Add
                 <small>Control panel</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Dashboard</li>
+                <li class="active">Product</li>
             </ol>
         </section>
 
         <section class="content">
             <div class="row">
                 <!-- left column -->
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
-                            <a class="btn btn-primary pull-right" href="{{route('product_unit.index')}}">Back</a>
+
+                            <a class="btn btn-primary" href="{{route('product.index')}}">Back</a>
                         </div><!-- /.box-header -->
                         @if(Session::has('message'))
                             <p class="alert alert-success">{{session('message')}}</p>
                         @endif
                         <!-- form start -->
-                        <form action="{{route('product_unit.store')}}" method="POST" role="form">
+                        <form action="{{route('product.store')}}" method="POST" role="form">
                             @csrf
 
                             <div class="box-body">
@@ -42,6 +42,39 @@
                                 @error('name')
                                     <p class="alert alert-danger">{{$message}}</p>
                                 @enderror
+
+                                <div class="form-group">
+                                    <label for="unit_id">Unit</label>
+                                    <select name="unit_id" class="form-control" id="unit_id">
+                                        <option value="">Select one</option>
+                                        @foreach($units as $unit)
+                                        <option value="{{$unit->id}}">{{$unit->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @error('unit_id')
+                                    <p class="alert alert-danger">{{$message}}</p>
+                                @enderror
+
+                                <div class="form-group">
+                                    <label for="code">Code</label>
+                                    <input type="text" name="code" value="{{old('code')}}" class="form-control" id="code"
+                                        placeholder="Enter code .">
+                                </div>
+                                @error('code')
+                                    <p class="alert alert-danger">{{$message}}</p>
+                                @enderror
+
+
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <input type="text" name="description" value="{{old('description')}}" class="form-control" id="description"
+                                        placeholder="Enter description.">
+                                </div>
+                                @error('description')
+                                    <p class="alert alert-danger">{{$message}}</p>
+                                @enderror
+
                                 <div class="radio">
 
                                    <b>Status *</b>
@@ -55,7 +88,7 @@
                             </div><!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
                     </div><!-- /.box -->

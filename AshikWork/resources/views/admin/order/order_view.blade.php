@@ -9,12 +9,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Product Unit
+                Product View
                 <small>Control panel</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Product Unit</li>
+                <li class="active">product </li>
             </ol>
         </section>
 
@@ -25,8 +25,8 @@
 
                 <div class="box">
                   <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
-                    <a class="btn btn-primary pull-right" href="{{route('product_unit.create')}}">Add Unit</a>
+
+                    <a class="btn btn-primary" href="{{route('product.create')}}">Add product</a>
                   </div><!-- /.box-header -->
                   <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
@@ -34,6 +34,9 @@
                         <tr>
 
                           <th>Name</th>
+                          <th>Unit</th>
+                          <th>Code</th>
+                          <th>Description</th>
                           <th>Status</th>
                           <th>Action</th>
 
@@ -46,9 +49,17 @@
                         <tr>
 
                           <td>{{$data->name}}</td>
+                          <td>
+                            @foreach($units as $unit)
+                            {{$data->unit_id==$unit->id ? $unit->name :''}}
+                            @endforeach
+                            </td>
+                          <td>{{$data->code}}</td>
+                          <td>{{$data->description}}</td>
+
                           <td><p class="btn btn-{{$data->status==1?"success":"danger"}} btn-xs">{{$data->status==1?"Active":"Inactive"}}</p></td>
                           <td>
-                              <a class="btn btn-info"href="{{route('product_unit.edit',['id'=>$data->id])}}">Edit</a>
+                              <a class="btn btn-info"href="{{route('product.edit',['id'=>$data->id])}}">Edit</a>
                           </td>
 
                         </tr>
@@ -62,6 +73,9 @@
                         <tr>
 
                             <th>Name</th>
+                            <th>Unit</th>
+                            <th>Code</th>
+                            <th>Description</th>
                             <th>Status</th>
                             <th>Action</th>
 
