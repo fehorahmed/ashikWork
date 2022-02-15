@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductUnitController;
 use App\Http\Controllers\Admin\SupplierController;
@@ -50,11 +51,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('admin/product/edit',[ProductController::class,'update'])->name('product.update');
 
     //Order Master
-    Route::get('admin/order',[ProductController::class,'index'])->name('order.index');
-    Route::get('admin/order/create',[ProductController::class,'create'])->name('order.create');
-    Route::post('admin/order/store',[ProductController::class,'store'])->name('order.store');
-    Route::get('admin/order/edit/{id}',[ProductController::class,'edit'])->name('order.edit');
-    Route::post('admin/order/edit',[ProductController::class,'update'])->name('order.update');
+    Route::get('admin/order',[OrderController::class,'index'])->name('order.index');
+    Route::get('admin/order/create',[OrderController::class,'create'])->name('order.create');
+    Route::post('admin/order/store',[OrderController::class,'store'])->name('order.store');
+    Route::get('admin/order/edit/{id}',[OrderController::class,'edit'])->name('order.edit');
+    Route::post('admin/order/edit',[OrderController::class,'update'])->name('order.update');
 
 });
 

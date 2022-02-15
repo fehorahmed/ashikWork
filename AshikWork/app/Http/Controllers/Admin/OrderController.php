@@ -14,4 +14,9 @@ class OrderController extends Controller
         //,['datas'=>$data,'units'=>$units]
         return view('admin.order.order_view');
     }
+    public function create()
+    {
+       // $units=ProductUnit::all();
+        return view('admin.order.order_add');
+    }
 }
