@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDetails extends Model
 {
     use HasFactory;
+    function product(){
+        return $this->hasOne(Product::class,'id','product_id');
+    }
 }

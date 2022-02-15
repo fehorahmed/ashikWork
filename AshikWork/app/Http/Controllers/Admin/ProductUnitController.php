@@ -36,7 +36,7 @@ class ProductUnitController extends Controller
        $model->save();
 
 
-       return redirect()->back()->with('message','Product Unit Added...!');
+       return redirect()->route('product_unit.index')->with('message','Product Unit Added...!');
     }
 
 
@@ -61,7 +61,7 @@ class ProductUnitController extends Controller
        $model->update();
 
 
-       return redirect()->back()->with('message','Product Unit Updated...!');
+       return redirect()->route('product_unit.index')->with('message','Product Unit Updated...!');
     }
 
 

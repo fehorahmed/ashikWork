@@ -26,7 +26,7 @@
                 <div class="box">
                   <div class="box-header">
 
-                    <a class="btn btn-primary" href="{{route('product.create')}}">Add product</a>
+                    <a class="btn btn-primary" href="{{route('order.create')}}">Add Order</a>
                   </div><!-- /.box-header -->
                   <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
@@ -34,10 +34,10 @@
                         <tr>
 
                           <th>Name</th>
-                          <th>Unit</th>
-                          <th>Code</th>
-                          <th>Description</th>
-                          <th>Status</th>
+                          <th>Company Name</th>
+                          <th>Order No</th>
+                          <th>Date</th>
+                          <th>Total Price</th>
                           <th>Action</th>
 
                         </tr>
@@ -48,18 +48,16 @@
                         @foreach($datas as $data)
                         <tr>
 
-                          <td>{{$data->name}}</td>
+                          <td>{{$data->supplier->name}}</td>
                           <td>
-                            @foreach($units as $unit)
-                            {{$data->unit_id==$unit->id ? $unit->name :''}}
-                            @endforeach
+                            {{$data->supplier->c_name}}
                             </td>
-                          <td>{{$data->code}}</td>
-                          <td>{{$data->description}}</td>
-
-                          <td><p class="btn btn-{{$data->status==1?"success":"danger"}} btn-xs">{{$data->status==1?"Active":"Inactive"}}</p></td>
+                          <td>{{$data->order_no}}</td>
+                          <td>{{$data->date}}</td>
+                          <td>{{$data->total}}</td>
                           <td>
-                              <a class="btn btn-info"href="{{route('product.edit',['id'=>$data->id])}}">Edit</a>
+                              <a class="btn btn-info"href="{{route('order.view',['id'=>$data->id])}}">View</a>
+                              {{-- <a class="btn btn-info"href="{{route('order.edit',['id'=>$data->id])}}">Edit</a> --}}
                           </td>
 
                         </tr>
@@ -73,10 +71,10 @@
                         <tr>
 
                             <th>Name</th>
-                            <th>Unit</th>
-                            <th>Code</th>
-                            <th>Description</th>
-                            <th>Status</th>
+                            <th>Company Name</th>
+                            <th>Order No</th>
+                            <th>Date</th>
+                            <th>Total Price</th>
                             <th>Action</th>
 
                         </tr>

@@ -19,11 +19,11 @@
         <section class="content">
             <div class="row">
                 <!-- left column -->
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
+                            <h3 class="box-title">Unit Add</h3>
                             <a class="btn btn-primary pull-right" href="{{route('product_unit.index')}}">Back</a>
                         </div><!-- /.box-header -->
                         @if(Session::has('message'))
@@ -45,8 +45,8 @@
                                 <div class="radio">
 
                                    <b>Status *</b>
-                                    <label><input type="radio" name="status"  value="1"> Active </label>&nbsp;&nbsp;
-                                    <label><input type="radio" name="status"  value="0"> Inactive</label>
+                                    <label><input type="radio" name="status" required  value="1"> Active </label>&nbsp;&nbsp;
+                                    <label><input type="radio" name="status" required  value="0"> Inactive</label>
                                 </div>
                                 @error('status')
                                     <p class="alert alert-danger">{{$message}}</p>

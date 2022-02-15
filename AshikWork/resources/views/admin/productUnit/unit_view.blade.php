@@ -25,9 +25,12 @@
 
                 <div class="box">
                   <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
+                    <h3 class="box-title">Unit info</h3>
                     <a class="btn btn-primary pull-right" href="{{route('product_unit.create')}}">Add Unit</a>
                   </div><!-- /.box-header -->
+                         @if(Session::has('message'))
+                            <p class="alert alert-success">{{session('message')}}</p>
+                        @endif
                   <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>

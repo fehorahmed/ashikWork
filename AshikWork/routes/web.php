@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Order Master
     Route::get('admin/order',[OrderController::class,'index'])->name('order.index');
+    Route::get('admin/order/view/{id}',[OrderController::class,'view'])->name('order.view');
     Route::get('admin/order/create',[OrderController::class,'create'])->name('order.create');
     Route::post('admin/order/store',[OrderController::class,'store'])->name('order.store');
     Route::get('admin/order/edit/{id}',[OrderController::class,'edit'])->name('order.edit');

@@ -28,7 +28,6 @@ class ProductController extends Controller
        $request->validate([
             'name'=>'required',
             'unit_id'=>'required',
-            'code'=>'numeric',
             'status'=>'required',
        ]);
        $model= new Product();
