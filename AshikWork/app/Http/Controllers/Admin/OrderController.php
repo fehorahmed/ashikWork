@@ -14,10 +14,10 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $supplier=Supplier::all();
+
          $datas= Order::all();
         //,['datas'=>$data,'units'=>$units]
-        return view('admin.order.order_view',compact(['supplier', 'datas']));
+        return view('admin.order.order_view',compact(['datas']));
     }
     public function create()
     {
@@ -31,7 +31,7 @@ class OrderController extends Controller
         $validated = $request->validate([
             'supplier_id'=>'required',
             'date'=>'required',
-            'order_no'=>'required',
+            'order_no'=>'required|unique:orders',
             'product_id'=>'required',
             'product_id.*'=>'required',
             'quantity.*'=>'required',
@@ -66,7 +66,7 @@ class OrderController extends Controller
 
 
 
-       return redirect()->back()->with('message','Order Added..!');
+       return redirect()->route('order.index')->with('message','Order Added..!');
 
     }
 

@@ -28,6 +28,9 @@
 
                     <a class="btn btn-primary" href="{{route('supplier.create')}}">Add Supplier</a>
                   </div><!-- /.box-header -->
+                  @if (Session::has('message'))
+                            <p class="alert alert-success">{{ session('message') }}</p>
+                        @endif
                   <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>

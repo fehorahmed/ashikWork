@@ -40,7 +40,7 @@ class ProductController extends Controller
        $model->save();
 
 
-       return redirect()->back()->with('message','Product Added...!');
+       return redirect()->route('product.index')->with('message','Product Added...!');
     }
 
 
@@ -71,7 +71,7 @@ class ProductController extends Controller
        $model->update();
 
 
-       return redirect()->back()->with('message','Product Updated...!');
+       return redirect()->route('product.index')->with('message','Product Updated...!');
     }
 
 }

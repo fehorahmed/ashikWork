@@ -42,7 +42,7 @@ class SupplierController extends Controller
        $model->save();
 
 
-       return redirect()->back()->with('message','Supplier Added...!');
+       return redirect()->route('supplier.index')->with('message','Supplier Added...!');
     }
 
 
@@ -75,7 +75,7 @@ class SupplierController extends Controller
        $model->update();
 
 
-       return redirect()->back()->with('message','Supplier Updated...!');
+       return redirect()->route('supplier.index')->with('message','Supplier Updated...!');
     }
 
 }

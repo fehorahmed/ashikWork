@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="{{asset('admin')}}/plugins/datatables/dataTables.bootstrap.css">
 
+    @yield('css')
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('admin') }}/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins

@@ -1,5 +1,9 @@
 @extends('admin.layout.main')
 
+@section('css')
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('admin') }}/plugins/select2/select2.min.css">
+@endsection
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -36,17 +40,28 @@
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="supplier_id">Supplier *</label>
-                                            <select class="form-control" name="supplier_id" id="supplier_id">
+
+
+
+                                            <div class="form-group">
+                                                <label for="supplier_id">Supplier *</label>
+                                                <select class="form-control select2" name="supplier_id" style="width: 100%;">
+                                                    <option value="">select one</option>
+                                                    @foreach($supplier as $sup)
+                                                    <option {{old('supplier_id')==$sup->id?"selected":''}} value="{{$sup->id}}">{{$sup->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                              </div><!-- /.form-group -->
+
+                                            {{-- <select class="form-control" name="supplier_id" id="supplier_id">
                                                 <option value="">select one</option>
                                                     @foreach($supplier as $sup)
                                                     <option {{old('supplier_id')==$sup->id?"selected":''}} value="{{$sup->id}}">{{$sup->name}}</option>
                                                     @endforeach
-                                            </select>
-                                        </div>
+                                            </select> --}}
+
                                         @error('supplier_id')
-                                            <p class="alert alert-danger">{{ $message }}</p>
+                                            <p class="text-danger">{{ $message }}</p>
                                         @enderror
 
                                     </div>
@@ -57,7 +72,7 @@
                                                 class="form-control" id="date">
                                         </div>
                                         @error('date')
-                                            <p class="alert alert-danger">{{ $message }}</p>
+                                            <p class="text-danger">{{ $message }}</p>
                                         @enderror
 
                                     </div>
@@ -68,7 +83,7 @@
                                                 class="form-control" id="order_no" placeholder="Enter order no.">
                                         </div>
                                         @error('order_no')
-                                            <p class="alert alert-danger">{{ $message }}</p>
+                                            <p class="text-danger">{{ $message }}</p>
                                         @enderror
 
                                     </div>
@@ -135,7 +150,7 @@
                                     @else
                                         <tr id="inputFormRow">
                                             <td>
-                                                <select class="form-control" name="product_id[]" id="product_id">
+                                                <select class="form-control select2" style="width: 100%;" name="product_id[]" id="product_id">
                                                     <option value="">select one</option>
                                                     @foreach($product as $pro)
                                                     <option value="{{$pro->id}}">{{$pro->name}}</option>
@@ -150,7 +165,7 @@
                                             <td><input type="number" onchange="total()"  name="unit_price[]"
                                                 class="form-control" id="unit_price" placeholder="Enter Price .">
                                            </td>
-                                            <td><input type="number"  name="total_cost[]"
+                                            <td><input type="number" readonly name="total_cost[]"
                                                  class="form-control" id="total_cost">
                                            </td>
                                             <td></td>
@@ -186,13 +201,13 @@
     </div><!-- /.content-wrapper -->
 @endsection
 @section('script')
-
+<script src="{{ asset('admin') }}/plugins/select2/select2.full.min.js"></script>
 <script type="text/javascript">
     // add row
     $("#addRow").click(function () {
         var html = '';
         html += '<tr id="inputFormRow"> <td>';
-        html += ' <select class="form-control" name="product_id[]" id="product_id"><option value="">select one</option> @foreach($product as $pro) <option value="{{$pro->id}}">{{$pro->name}}</option>@endforeach </select> @error('product_id') <p class="alert alert-danger">{{ $message }}</p>@enderror </td>>';
+        html += '<select class="form-control select2" style="width: 100%;" name="product_id[]" id="product_id"><option value="">select one</option> @foreach($product as $pro) <option value="{{$pro->id}}">{{$pro->name}}</option>@endforeach </select></td>>';
         html += '<td><input type="number" onchange="total()"  name="quantity[]" class="form-control" id="quantity" placeholder="Enter quantity .">@error("quantity")<p class="alert alert-danger">{{ $message }}</p>@enderror</td>';
         html += '<td><input type="number"  onchange="total()"  name="unit_price[]"  class="form-control" id="unit_price" placeholder="Enter Price .">@error('unit_price')<p class="alert alert-danger">{{ $message }}</p>@enderror</td>';
         html += '<td><input type="number" readonly name="total_cost[]" class="form-control" id="total_cost"></td>';
@@ -229,6 +244,7 @@
            // console.log(total);
 
     }
+
     $( document ).ready(function() {
         var quantity= document.getElementsByName('quantity[]');
         var price= document.getElementsByName('unit_price[]');
@@ -240,11 +256,18 @@
             full_total+=total;
         }
         document.getElementById('full_total').innerHTML= "৳ "+full_total;
+
+        $(".select2").select2();
 });
 
 
 
 
 </script>
+
+
+    <!-- Select2 -->
+
+
 
 @endsection
